@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+export const footer = () =>{
   const footerHTML = 
   `<div class="footer-container container">
       <div class="content_1">
@@ -45,4 +45,4 @@ document.addEventListener("DOMContentLoaded", function() {
   } else {
       console.error("Footer element not found");
   }
-});
+}
