@@ -32,7 +32,7 @@ const showtoCartProducts = () =>{
         
         // show updated quantity and price --
         const LSactualData = fetchQuantityfromCartLS(id, price);
-        productClone.querySelector(".productPrice").textContent = LSactualData.price;
+        productClone.querySelector(".productPrice").textContent = Number(LSactualData.price).toFixed(2);
         productClone.querySelector(".productQuantity").textContent = LSactualData.quantity;
 
         // handle increment and decrement button

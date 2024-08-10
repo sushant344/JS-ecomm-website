@@ -5,8 +5,10 @@ export const showToast = (operation, id)=> {
     // Set the text content of the toast based on the operation
     if (operation === "add") {
       toast.textContent = `Product with ID ${id} has been added.`;
-    } else {
+    } else if(operation === "delete") {
       toast.textContent = `Product with ID ${id} has been deleted.`;
+    } else{
+      toast.textContent = `Meassege sent successfully`;
     }
   
     document.body.appendChild(toast);

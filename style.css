@@ -51,7 +51,7 @@ h6 {
 }
 
 h1 {
-  font-size: 3.2rem;
+  font-size: 3rem;
 }
 h2 {
   font-size: 3rem;
@@ -85,6 +85,17 @@ a {
   line-height: 1.5;
   font-weight: 400;
 }
+
+.loader{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 100vh;
+  background-color: #2a2c30;
+}
+
 
 /*! layout */
 .container {
@@ -176,7 +187,7 @@ textarea:focus-visible {
   border-bottom: 0;
   border-color: red;
   font-size: 1.6rem;
-  z-index: 1000;
+  z-index: 10;
   font-family: "urbanist";
   animation: toastAnimation 2s linear;
   -webkit-animation: toastAnimation 2s linear;
@@ -374,9 +385,11 @@ main .section-hero {
   padding: 3.2rem 2.4rem;
   background-color: var(--backgroundSecondary);
   position: relative;
-  /* box-shadow: inset 0 0 0 4rem #000; */
-  /* border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; */
-
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
   &::after {
     content: "";
     position: absolute;
@@ -447,14 +460,6 @@ main .section-hero {
   & :div {
     justify-self: left;
   }
-}
-
-.div-extra {
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
-  -moz-border-radius: 0.5rem;
-  -ms-border-radius: 0.5rem;
-  -o-border-radius: 0.5rem;
 }
 
 /***** End Extra Div Section *****/
@@ -777,7 +782,6 @@ footer {
   -moz-border-radius: 0.3rem;
   -ms-border-radius: 0.3rem;
   -o-border-radius: 0.3rem;
-  -webkit-border-radius: 0.3rem;
 }
 
 .category {
@@ -888,7 +892,6 @@ footer {
 .contact-btn,
 .hero-btn a {
   font-weight: 500;
-  font: inherit;
   border-radius: 6px;
   border: 0;
   padding: 1rem 2.8rem;
@@ -1012,7 +1015,7 @@ footer {
     margin-top: 3.2rem;
 
     p {
-      color: #8c9299;
+      color: #646464;
     }
 
     .productSubTotal,
@@ -1116,10 +1119,6 @@ footer {
 
 
 @media (width <= 980px) {
-  body {
-    padding: 0 0.6rem;
-  }
-
   .section-navbar img{
     width: 40%;
   }
@@ -1183,7 +1182,7 @@ footer {
 
 @media (width <= 768px) {
   .section-navbar img{
-    width: 20%;
+    width: 25%;
   }
 
   .section-hero img{
@@ -1218,14 +1217,20 @@ footer {
     grid-template-columns: repeat(1, minmax(33%, 1fr));
   }
 
-  #productCartContainer .card {
-    width: 100%;
+  #productCartContainer{
     display: grid;
-    /* grid-template-columns: 0.5fr 0.5fr 1fr 0.5fr 1fr 1fr; */
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #productCartContainer .card {
+    display: flex;
+    flex-direction: column;
+    /* width: 100%;
+    display: grid;
     grid-template-columns: 0.5fr 0.1fr repeat(2, 1fr);
-    align-items: center;
+    align-items: center; */
     /* margin: auto; */
-    gap: 3.2rem;
+    /* gap: 3.2rem; */
   }
 
   .productQuantity {
@@ -1289,7 +1294,15 @@ footer {
   }
 
   .section-navbar img{
-    width: 25%;
+    width: 30%;
+  }
+
+  .contact-map iframe{
+    height: 35rem;
+  }
+
+  .addToCartElement .container{
+    padding: 9.6rem 0rem;
   }
 }
 /***** End  media queries Section *****/
