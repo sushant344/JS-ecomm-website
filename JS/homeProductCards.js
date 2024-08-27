@@ -6,7 +6,8 @@ const productTemplate = document.getElementById("productTemplate");
 
 export const showProductContainer= (products) =>{
 
-    if(!products){
+    if (!products || !Array.isArray(products) || products.length === 0) {
+        console.error("Invalid products array:", products);
         return false;
     }
 
@@ -31,12 +32,14 @@ export const showProductContainer= (products) =>{
 
         // onclick increment & decrement button toggle quantity --
         productClone.querySelector(".stockElement")
-        .addEventListener("click", (event)=> { homeQuantitytoggle(event, id, stock) });
+        .addEventListener("click", (event) => {
+            homeQuantitytoggle(event, id, stock);
+        });
 
         // onclick add to cart all details store in localStorage --
         productClone.querySelector(".add-to-cart-button")
         .addEventListener("click", () => {
-        addTocart(id);
+            addTocart(id);
         });
 
 

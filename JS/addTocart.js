@@ -3,49 +3,46 @@ import { showToast } from "./showToast";
 import { updateCartValue } from "./updateCartValue";
 
 getCartProductfromLS();
-export const addTocart = (id) =>{
+export const addTocart = (id) => {
+  let arrLocalStorageProduct = getCartProductfromLS();
 
-    let arrLocalStorageProduct = getCartProductfromLS();
+  const currentProdElem = document.querySelector(`#card${id}`);
+  let quantity = currentProdElem.querySelector(".productQuantity").innerText;
+  let price = currentProdElem.querySelector(".productPrice").innerText;
+  //   console.log(quantity, price);
+  price = price.replace("₹", "");
 
-    const currentCardElem = document.querySelector(`#card${id}`);
-    
-    let price = currentCardElem.querySelector(".productPrice").innerText;
-    let quantity = currentCardElem.querySelector(".productQuantity").innerText;
-    // console.log(productPrice, productQuantity);
-    price = price.replace("₹", "");
+  let existingProd = arrLocalStorageProduct.find(
+    (curProd) => curProd.id === id
+  );
 
-    // if product already exist in LS then only update quantity and price --
-    const existingProd = arrLocalStorageProduct.find(curProd => curProd.id === id);
-
-    if(existingProd && quantity > 1){
-        // console.log("Exist", existingProd);
-        quantity = Number(existingProd.quantity) + Number(quantity);
-        price = Number(quantity * price).toFixed(2);
-
-        let updatedcart = { id, price, quantity };
-        updatedcart = arrLocalStorageProduct.map((curProd)=>{
-            return curProd.id === id ? updatedcart : curProd;
-        });
-
-        localStorage.setItem("cartProductLS", JSON.stringify(updatedcart));
-
-        //show toast when product added to the cart
-        showToast("add", id);
-    }
-
-    if(existingProd){
-        return false;
-    }
-
+  if (existingProd && quantity > 1) {
+    quantity = Number(existingProd.quantity) + Number(quantity);
     price = Number(price * quantity);
-    quantity = Number(quantity);
+    let updatedCart = { id, quantity, price };
 
-    // add to localStorage --
-    arrLocalStorageProduct.push({id, price, quantity});
-    localStorage.setItem("cartProductLS", JSON.stringify(arrLocalStorageProduct));
+    updatedCart = arrLocalStorageProduct.map((curProd) => {
+      return curProd.id === id ? updatedCart : curProd;
+    });
 
-    updateCartValue(arrLocalStorageProduct);
-
+    localStorage.setItem("cartProductLS", JSON.stringify(updatedCart));
     //show toast when product added to the cart
     showToast("add", id);
-}
+  }
+
+  if (existingProd) {
+    return false;
+  }
+
+  price = Number(price * quantity);
+  quantity = Number(quantity);
+
+  arrLocalStorageProduct.push({ id, quantity, price });
+  localStorage.setItem("cartProductLS", JSON.stringify(arrLocalStorageProduct));
+
+  //update the cart button value
+  updateCartValue(arrLocalStorageProduct);
+
+  //show toast when product added to the cart
+  showToast("add", id);
+};

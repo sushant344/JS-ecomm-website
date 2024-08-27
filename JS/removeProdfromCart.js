@@ -1,5 +1,6 @@
 import { getCartProductfromLS } from "./getCartProductfromLS"
 import { showToast } from "./showToast";
+import { updateCartProductTotal } from "./updateCartProductTotal";
 
 export const removeProdfromCart = (id) =>{
     
@@ -15,5 +16,6 @@ export const removeProdfromCart = (id) =>{
         showToast("delete", id);
     }
 
-    getCartProductfromLS()
+    getCartProductfromLS();
+    updateCartProductTotal();
 }
