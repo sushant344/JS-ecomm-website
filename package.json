@@ -12,6 +12,6 @@
     "vite": "^5.2.0"
   },
   "dependencies": {
-    "mongoose": "^8.4.4"
+    "mongoose": "^8.9.5"
   }
 }
